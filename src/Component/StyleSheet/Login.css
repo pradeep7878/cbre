@@ -1,0 +1,9 @@
+.password-container{
+    position: relative;
+}
+.eye-icon{
+    position: absolute;
+    bottom: 0.26rem;
+    right: 1rem;
+    cursor: pointer;
+}

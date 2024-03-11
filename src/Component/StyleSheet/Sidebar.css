@@ -1,0 +1,29 @@
+.sidebar-width{
+    width: 15rem!important;
+    background-color:white;
+    height: 100vh;   /* total sidebar height=100vh */
+}
+.sidebar-top-logo{
+    height: 15vh;    /* sidebar top logo height=15vh */
+}
+.sidebar-middle-links{
+    height: 75vh;   /* sidebar middle nav-links height=85vh */
+}
+a.nav-link{
+    color: #cecece;
+    margin: .5rem 0;
+}
+a.nav-link:hover{
+    color: #cecece;
+}
+a.nav-link.active{
+    background-color: #3087f0;
+    color: white ;
+}
+.nav-link{
+    transition: none!important;
+}
+.logout-container{
+    height: 10vh;   /* sidebar middle nav-links height=85vh */
+       
+}

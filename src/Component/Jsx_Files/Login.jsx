@@ -52,31 +52,7 @@ const Login = () => {
     }
 
     return (
-        // <div>
-        //     <div className="container login-component  d-flex justify-content-center align-items-center vh-100 ">
-        //     <div className="login-container  rounded-3 p-5 shadow-lg ">
-        //             <h2 className='text-center mb-4'>Login</h2>
-        //             <form>
-        //                 <div className="mb-3">
-        //                     <label htmlFor="exampleInputEmail1" className="form-label">Username <span className='text-danger'>*</span></label>
-        //                     <input type="username" className="form-control" id="username" aria-describedby="username" name="username" value={inputDetails.username} onChange={handleChange} />
-        //                 </div>
-        //                 {error && inputDetails.username === '' ? <p className='text-danger mb-0 pb-2'>Username is required</p> : null}
-
-        //                 <div className="mb-3 mt-4 password-container" >
-        //                     <label htmlFor="password" className="form-label">Password <span className='text-danger'>*</span></label>
-        //                     <input type={showPassword ? 'text' : 'password'} className="form-control" id="password" name="password" value={inputDetails.password} onChange={handleChange} />
-        //                     <span className='eye-icon fs-5' onClick={() => setShowPassword(!showPassword)}>{showPassword ? <PiEyeLight /> : <PiEyeSlash />}</span>
-        //                 </div>
-        //                 {error && inputDetails.password === '' ? <p className='text-danger mb-0 pb-2'>Password is required</p> : null}
-
-        //                 <button type="button" className="btn bg-custom mx-auto d-block mt-5 w-100" onClick={handleSubmit}>Login</button>
-        //             </form>
-        //             <Toaster />
-        //         </div>
-        //     </div>
-        // </div>
-
+      
         <>
          <section className="bg-light  ">
            <div className="container">

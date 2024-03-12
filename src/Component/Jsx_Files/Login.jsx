@@ -33,15 +33,20 @@ const Login = () => {
             const userAvailability = loginDetails.filter((val, index) => {
                 return val.username === inputDetails.username && val.password === inputDetails.password;
             })
+            const tokenData ={userCredentials:'',LoggedIn:false}
 
+            if (userAvailability.length === 1) {     
+                var settokenData={...tokenData,userCredentials:'success',LoggedIn:true}   
+                console.log(settokenData)       
+                localStorage.setItem('tokenDetails', JSON.stringify(settokenData));
 
-            if (userAvailability.length === 1) {               
-                localStorage.setItem('userCredentials', 'success');
                 pageRender('/project/portfolio')
 
             } else {
                 toast.error('Invalid Username or Password')
-                localStorage.setItem('userCredentials', 'failed');
+
+                var settokenData={...tokenData,userCredentials:'failed',LoggedIn:false}          
+                localStorage.setItem('tokenDetails', JSON.stringify(settokenData));
             }
         }
     }

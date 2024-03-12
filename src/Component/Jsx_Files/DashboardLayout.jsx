@@ -6,12 +6,19 @@ import "../StyleSheet/DashboardLayout.css";
 import toast, { Toaster } from 'react-hot-toast';
 
 const DashboardLayout = () => {
-  const auth = { token: localStorage.getItem('userCredentials') }
+  const auth = { token: JSON.parse(localStorage.getItem('tokenDetails')).userCredentials }
 
   useEffect(() => {
-    toast.success('Login successful');
+    var getTokenDetails=JSON.parse(localStorage.getItem('tokenDetails'));
+    if(getTokenDetails.LoggedIn){ 
+      toast.success('Login successful');
+      localStorage.setItem('tokenDetails', JSON.stringify({userCredentials:'success',LoggedIn:false} ));
+    }
+
   }, [])
 
+
+  
   return (
     <>
       {auth.token === 'success' ?

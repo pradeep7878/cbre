@@ -12,6 +12,15 @@ const Sidebar = () => {
 
     const { heading, setHeading } = useContext(CommonContext);
 
+    useEffect(() => {
+        let URL = window.location.href;
+        let splitURL = URL.split('/');
+    
+        let sidebarHeading = splitURL[splitURL.length-1];
+        
+        
+      },[heading])
+
     return (
         <div className='sidebar-width d-none d-lg-block border-end'>
             <div className="container">
@@ -36,7 +45,7 @@ const Sidebar = () => {
                        
                     </div>
                     <div className="logout-container pt-3">
-                        <Link to="/" className="btn btn-danger w-100" onClick={() => localStorage.removeItem('userCredentials')}>
+                        <Link to="/" className="btn btn-danger w-100" onClick={() => localStorage.setItem('tokenDetails', JSON.stringify({userCredentials:'failed',LoggedIn:false} ))}>
                             <span className='pe-4'><RiLogoutBoxLine className='fs-5' /></span>
                             Logout
                         </Link>

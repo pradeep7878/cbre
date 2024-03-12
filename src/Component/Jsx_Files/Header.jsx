@@ -48,7 +48,7 @@ const Header = () => {
 
                     </div>
                 </div>
-                <div class="offcanvas-footer">
+                <div className="offcanvas-footer">
                     <div className="logout-container text-center ">
                         <Link to="/" className="btn btn-danger w-75 mt-3" onClick={() => localStorage.removeItem('userCredentials')}>
                             <span className='pe-4'><RiLogoutBoxLine className='fs-5' /></span>

@@ -19,7 +19,6 @@ function App() {
             <Route path="portfolio" element={<Portfolio />} />
             <Route path="dive-deep" element={<DiveDeep/>}/>
             <Route path="analysis" element={<Analysis/>}/>
-
           </Route>
 
           <Route path="*" element={<Error404 />}/>

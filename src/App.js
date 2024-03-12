@@ -16,7 +16,7 @@ function App() {
           <Route path="/" element={<Login />} />
 
           <Route path="/project" element={<DashboardLayout/>}>
-            <Route path="portfolio" element={<Portfolio />} />
+            <Route path="portfolio" element={<Portfolio />} exact/>
             <Route path="dive-deep" element={<DiveDeep/>}/>
             <Route path="analysis" element={<Analysis/>}/>
           </Route>

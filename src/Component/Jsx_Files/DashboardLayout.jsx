@@ -6,7 +6,8 @@ import "../StyleSheet/DashboardLayout.css";
 import toast, { Toaster } from 'react-hot-toast';
 
 const DashboardLayout = () => {
-  const auth = { token: JSON.parse(localStorage.getItem('tokenDetails')).userCredentials }
+  var getUserCredentials=JSON.parse(localStorage.getItem('tokenDetails'))
+  const auth = { token: getUserCredentials.userCredentials }
 
   useEffect(() => {
     var getTokenDetails=JSON.parse(localStorage.getItem('tokenDetails'));

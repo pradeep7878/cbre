@@ -9,13 +9,53 @@ import { RiLogoutBoxLine } from 'react-icons/ri';
 
 const Header = () => {
 
-    const { heading, setHeading } = useContext(CommonContext)
+    const { heading, 
+        setHeading,
+        setInputDetails,
+        portfolioData,
+        getPortFolioToken,
+        diveDeepData,
+        getDiveDeepToken,
+        analysisData,
+        getAnalysisToken
+      } = useContext(CommonContext);
+
+
+    const handleLogout = () => {
+        localStorage.removeItem('initialToken');
+        setInputDetails({
+            username: "",
+            password: ""
+        })
+    }   
+
+    const handlePortfolio = (e) => {
+        localStorage.setItem('heading',"Portfolio")
+        
+        getPortFolioToken(portfolioData.group_id,portfolioData.report_id);
+        localStorage.removeItem("diveDeepToken");
+        localStorage.removeItem("analysisToken");
+    }
+    const handleDiveDeep = (e) => {
+        localStorage.setItem('heading',"Dive deep")
+
+        getDiveDeepToken(diveDeepData.group_id,diveDeepData.report_id);
+        localStorage.removeItem("analysisToken");
+        localStorage.removeItem("portfolioToken");
+    }
+    const handleAnalysis = (e) => {
+        localStorage.setItem('heading',"Analysis")
+
+        getAnalysisToken(analysisData.group_id,analysisData.report_id);
+        localStorage.removeItem("diveDeepToken");
+        localStorage.removeItem("portfolioToken");
+    }
 
     return (
         <div className='header-component position-sticky top-0'>
             <nav className="navbar navbar-expand-lg navbar-light bg-light header-nav-tag">
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="#">{heading}</a>
+                    <a className="navbar-brand" href="#">{localStorage.getItem('heading')}</a>
 
                     <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
                         <span className="navbar-toggler-icon"></span>
@@ -38,15 +78,15 @@ const Header = () => {
                 <div className="offcanvas-body">
                     <div className="row">
                         <div className="header-links nav flex-column nav_list px-3">
-                            <Link to={"/project/portfolio"} className={heading === "Portfolio" ? "nav-link rounded active" : "nav-link rounded"} onClick={() => setHeading("Portfolio")}>
+                            <Link to={"/project/portfolio"} className={localStorage.getItem('heading') === "Portfolio" ? "nav-link rounded active" : "nav-link rounded"} onClick={(e) =>handlePortfolio(e)}>
                                 <span className='pe-4 '><RxDashboard className='fs-5' /></span>
                                 Portfolio
                             </Link>
-                            <Link to={"/project/dive-deep"} className={heading === "Dive deep" ? "nav-link rounded active" : "nav-link rounded"} onClick={() => setHeading("Dive deep")}>
+                            <Link to={"/project/dive-deep"} className={localStorage.getItem('heading') === "Dive deep" ? "nav-link rounded active" : "nav-link rounded"} onClick={(e) => handleDiveDeep(e)}>
                                 <span className='pe-4'><BsBoxSeam className='fs-5' /></span>
                                 Dive deep
                             </Link>
-                            <Link to={"/project/analysis"} className={heading === "Analysis" ? "nav-link rounded active" : "nav-link rounded"} onClick={() => setHeading("Analysis")}>
+                            <Link to={"/project/analysis"} className={localStorage.getItem('heading') === "Analysis" ? "nav-link rounded active" : "nav-link rounded"} onClick={(e) => handleAnalysis(e)}>
                                 <span className='pe-4'><MdBarChart className='fs-5' /></span>
                                 Analysis
                             </Link>
@@ -57,7 +97,7 @@ const Header = () => {
                 </div>
                 <div className="offcanvas-footer">
                     <div className="logout-container text-center ">
-                        <Link to="/" className="btn btn-danger w-75 mt-3"  onClick={() => localStorage.setItem('tokenDetails', JSON.stringify({userCredentials:'failed',LoggedIn:false} ))}>
+                        <Link to="/" className="btn btn-danger w-75 mt-3"  onClick={() => handleLogout()}>
                             <span className='pe-4'><RiLogoutBoxLine className='fs-5' /></span>
                             Logout
                         </Link>

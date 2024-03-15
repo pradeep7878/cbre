@@ -1,32 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import Header from './Header'
 import "../StyleSheet/DashboardLayout.css";
 import toast, { Toaster } from 'react-hot-toast';
+import CommonContext from './CommonContext';
 
 const DashboardLayout = () => {
-  const [auth, setAuth] = useState(
-    {
-      token: JSON.parse(localStorage.getItem('tokenDetails')) !== null ? JSON.parse(localStorage.getItem('tokenDetails')).userCredentials : 'failed'
-    }
-  )
-
-  useEffect(() => {
-    var getTokenDetails = JSON.parse(localStorage.getItem('tokenDetails'));
-    if (getTokenDetails !== null) {
-      if (getTokenDetails.LoggedIn) {
-        toast.success('Login successful');
-        localStorage.setItem('tokenDetails', JSON.stringify({ userCredentials: 'success', LoggedIn: false }));
-      }
-    }
-  }, [])
+  // const {} = useContext(CommonContext);
+  const auth ={
+    token: localStorage.getItem('initialToken') !== null ? localStorage.getItem('initialToken') : ''
+  }
+  
 
 
 
   return (
     <>
-      {auth.token == "success" ?
+      {auth.token !== "" ?
         <div className='container-fluid'>
           <div className='row'>
             <Sidebar />

@@ -10,16 +10,50 @@ import { RiLogoutBoxLine } from "react-icons/ri";
 
 const Sidebar = () => {
 
-    const { heading, setHeading } = useContext(CommonContext);
+    const { heading, 
+            setHeading,
+            setInputDetails,
+            portfolioData,
+            getPortFolioToken,
+            diveDeepData,
+            getDiveDeepToken,
+            analysisData,
+            getAnalysisToken
+          } = useContext(CommonContext);
 
-    useEffect(() => {
-        let URL = window.location.href;
-        let splitURL = URL.split('/');
-    
-        let sidebarHeading = splitURL[splitURL.length-1];
+
+    const handleLogout = () => {
+        localStorage.removeItem('initialToken');
+        setInputDetails({
+            username: "",
+            password: ""
+        })
+        localStorage.removeItem("portfolioToken")
+        localStorage.removeItem("diveDeepToken");
+        localStorage.removeItem("analysisToken");
+    }   
+
+    const handlePortfolio = (e) => {
+        localStorage.setItem('heading',"Portfolio")
         
-        
-      },[heading])
+        getPortFolioToken(portfolioData.group_id,portfolioData.report_id);
+        localStorage.removeItem("diveDeepToken");
+        localStorage.removeItem("analysisToken");
+    }
+    const handleDiveDeep = (e) => {
+        localStorage.setItem('heading',"Dive deep")
+
+        getDiveDeepToken(diveDeepData.group_id,diveDeepData.report_id);
+        localStorage.removeItem("analysisToken");
+        localStorage.removeItem("portfolioToken");
+    }
+    const handleAnalysis = (e) => {
+        localStorage.setItem('heading',"Analysis")
+
+        getAnalysisToken(analysisData.group_id,analysisData.report_id);
+        localStorage.removeItem("diveDeepToken");
+        localStorage.removeItem("portfolioToken");
+    }
 
     return (
         <div className='sidebar-width d-none d-lg-block border-end'>
@@ -37,22 +71,22 @@ const Sidebar = () => {
                     </div>
 
                     <div className="sidebar-middle-links nav flex-column nav_list">
-                        <Link to={"/project/portfolio"} className={heading === "Portfolio" ? "nav-link rounded active" : "nav-link rounded"} onClick={() => setHeading("Portfolio")}>
+                        <Link to={"/project/portfolio"} className={localStorage.getItem('heading') === "Portfolio" ? "nav-link rounded active" : "nav-link rounded"} onClick={(e) =>handlePortfolio(e)}>
                             <span className='pe-4 '><RxDashboard className='fs-5' /></span>
                             Portfolio
                         </Link>
-                        <Link to={"/project/dive-deep"} className={heading === "Dive deep" ? "nav-link rounded active" : "nav-link rounded"} onClick={() => setHeading("Dive deep")}>
+                        <Link to={"/project/dive-deep"} className={localStorage.getItem('heading') === "Dive deep" ? "nav-link rounded active" : "nav-link rounded"} onClick={(e) => handleDiveDeep(e)}>
                             <span className='pe-4'><BsBoxSeam className='fs-5' /></span>
                             Dive deep
                         </Link>
-                        <Link to={"/project/analysis"} className={heading === "Analysis" ? "nav-link rounded active" : "nav-link rounded"} onClick={() => setHeading("Analysis")}>
+                        <Link to={"/project/analysis"} className={localStorage.getItem('heading') === "Analysis" ? "nav-link rounded active" : "nav-link rounded"} onClick={(e) => handleAnalysis(e)}>
                             <span className='pe-4'><MdBarChart className='fs-5' /></span>
                             Analysis
                         </Link>
                        
                     </div>
                     <div className="logout-container pt-3">
-                        <Link to="/" className="btn btn-danger w-100" onClick={() => localStorage.setItem('tokenDetails', JSON.stringify({userCredentials:'failed',LoggedIn:false} ))}>
+                        <Link to="/" className="btn btn-danger w-100" onClick={() => handleLogout()}>
                             <span className='pe-4'><RiLogoutBoxLine className='fs-5' /></span>
                             Logout
                         </Link>

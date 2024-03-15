@@ -7,12 +7,15 @@ import Analysis from "./Component/Jsx_Files/Analysis";
 import Login from "./Component/Jsx_Files/Login";
 import "./index.css"
 import Error404 from "./Component/Jsx_Files/Error404";
+import { DataProvider } from "./Component/Jsx_Files/CommonContext";
 
 function App() {
   return (
     <>
       <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <DataProvider>
         <Routes>
+        
           <Route path="/" element={<Login />} />
 
           <Route path="/project" element={<DashboardLayout/>}>
@@ -24,6 +27,7 @@ function App() {
           <Route path="*" element={<Error404 />}/>
 
         </Routes>
+        </DataProvider>
       </BrowserRouter>
     </>
   );

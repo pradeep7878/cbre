@@ -27,3 +27,8 @@ a.nav-link.active{
     height: 10vh;   /* sidebar middle nav-links height=85vh */
        
 }
+.cbre-sidebar-logo{
+    width: 60%;
+    display: block;
+    margin: 0 auto;
+}
